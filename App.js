@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Linking } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import { RNCamera } from 'react-native-camera';
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
+
   return (
     <View style={styles.body}>
       <Text style={styles.text}>Home</Text>
@@ -18,25 +19,31 @@ const HomeScreen = ({ navigation }) => {
     </View>
   )
 }
-const ScannerScreen = () => {
+
+const OtherPageScreen = ({ navigation, route }) => {
+
+  const { messageInfo } = route.params;
+  return (
+    <View style={styles.body}>
+      <Text style={styles.bigText}>{JSON.stringify(messageInfo)}</Text>
+    </View>
+  )
+}
+
+const ScannerScreen = ({ navigation }) => {
 
   onSuccess = e => {
-    Linking.openURL(e.data).catch(err =>
-      console.error('An error occured', err)
-    );
+    navigation.navigate('OtherPage', {
+      messageInfo: e.data
+    });
+    // Linking.openURL(e.data).catch(err =>
+    //   console.error('An error occured', err)
+    // );
   };
 
   return (
     <QRCodeScanner
       onRead={this.onSuccess}
-      // flashMode={RNCamera.Constants.FlashMode.torch}
-      topContent={
-        <Text style={styles.text}>
-          Go to{' '}
-          <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on
-          your computer and scan the QR code.
-        </Text>
-      }
       bottomContent={
         <Button title='OK. Got it!' />
       }
@@ -50,6 +57,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ScannerScreen" component={ScannerScreen} />
+        <Stack.Screen name="OtherPage" component={OtherPageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -64,6 +72,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+    margin: 10
+  },
+  bigText: {
+    fontSize: 40,
     margin: 10
   },
   textBold: {
