@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button, TouchableOpacity, Linking } from 'react-native';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -29,7 +29,7 @@ const ScannerScreen = () => {
   return (
     <QRCodeScanner
       onRead={this.onSuccess}
-      flashMode={RNCamera.Constants.FlashMode.torch}
+      // flashMode={RNCamera.Constants.FlashMode.torch}
       topContent={
         <Text style={styles.text}>
           Go to{' '}
