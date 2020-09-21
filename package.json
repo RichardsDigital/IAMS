@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "react-native run-android && cd ./server && nodemon start app.js",
+    "ios": "react-native run-ios && cd ./server && nodemon start app.js",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -32,6 +32,7 @@
     "eslint": "^7.9.0",
     "jest": "^26.4.2",
     "metro-react-native-babel-preset": "^0.63.0",
+    "nodemon": "^2.0.4",
     "react-test-renderer": "16.13.1"
   },
   "jest": {
