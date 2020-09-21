@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android && cd ./server && nodemon start app.js",
-    "ios": "react-native run-ios && cd ./server && nodemon start app.js",
-    "start": "react-native start",
+    "android": "react-native run-android && cd ./server && npx nodemon start app.js",
+    "ios": "react-native run-ios && cd ./server && npx nodemon start app.js",
+    "start": "react-native start && cd ./server && npx nodemon start app.js",
     "test": "jest",
     "lint": "eslint ."
   },
