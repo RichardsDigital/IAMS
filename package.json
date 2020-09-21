@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android && cd ./IAMS_server_side && npx nodemon start app.js",
     "ios": "react-native run-ios && cd ./IAMS_server_side && npx nodemon start app.js",
-    "start": "react-native start && cd ./IAMS_server_side && npx nodemon start app.js",
+    "start": "concurrently \"npx react-native start \" \"npx react-native run-ios\" \"cd ../IAMS_server_side && nodemon start app.js\" ",
     "test": "jest",
     "lint": "eslint ."
   },
