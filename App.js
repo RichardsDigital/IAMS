@@ -9,7 +9,6 @@ import { RNCamera } from 'react-native-camera';
 const Stack = createStackNavigator();
 
 const HomeScreen = ({ navigation }) => {
-
   return (
     <View style={styles.body}>
       <Text style={styles.text}>Home</Text>
@@ -20,12 +19,11 @@ const HomeScreen = ({ navigation }) => {
   )
 }
 
-const OtherPageScreen = ({ navigation, route }) => {
-
+const OtherPageScreen = ({ route }) => {
   const { messageInfo } = route.params;
   return (
     <View style={styles.body}>
-      <Text style={styles.bigText}>{JSON.stringify(messageInfo)}</Text>
+      <Text style={styles.bigText}>{messageInfo}</Text>
     </View>
   )
 }
@@ -33,12 +31,10 @@ const OtherPageScreen = ({ navigation, route }) => {
 const ScannerScreen = ({ navigation }) => {
 
   onSuccess = e => {
-    navigation.navigate('OtherPage', {
-      messageInfo: e.data
-    });
-    // Linking.openURL(e.data).catch(err =>
-    //   console.error('An error occured', err)
-    // );
+    Linking.openURL(e.data);
+    // navigation.navigate('OtherPage', {
+    //   messageInfo: e.data
+    // });
   };
 
   return (
